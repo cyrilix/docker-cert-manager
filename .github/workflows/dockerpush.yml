@@ -37,7 +37,7 @@ jobs:
             docker-compose --file docker-compose.test.yml build
             docker-compose --file docker-compose.test.yml run sut
           else
-            docker buildx build . --file Dockerfile --platform linux/arm/v7,linux/arm64,linux/amd64 --progress plain
+            docker buildx build . --file Dockerfile --platform linux/arm64,linux/amd64 --progress plain
           fi
 
   # Push image to GitHub Package Registry.
@@ -77,7 +77,7 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
-          docker buildx build . --platform linux/arm/v7,linux/arm64,linux/amd64 --progress plain --push --tag $IMAGE_ID:$VERSION --target acmesolver
+          docker buildx build . --platform linux/arm64,linux/amd64 --progress plain --push --tag $IMAGE_ID:$VERSION --target acmesolver
 
       - name: Push controller image
         run: |
@@ -92,7 +92,7 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
-          docker buildx build . --platform linux/arm/v7,linux/arm64,linux/amd64 --progress plain --push --tag $IMAGE_ID:$VERSION --target controller
+          docker buildx build . --platform linux/arm64,linux/amd64 --progress plain --push --tag $IMAGE_ID:$VERSION --target controller
 
       - name: Push cainjector image
         run: |
@@ -107,7 +107,7 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
-          docker buildx build . --platform linux/arm/v7,linux/arm64,linux/amd64 --progress plain --push --tag $IMAGE_ID:$VERSION --target cainjector
+          docker buildx build . --platform linux/arm64,linux/amd64 --progress plain --push --tag $IMAGE_ID:$VERSION --target cainjector
 
       - name: Push webhook image
         run: |
@@ -122,4 +122,4 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
-          docker buildx build . --platform linux/arm/v7,linux/arm64,linux/amd64 --progress plain --push --tag $IMAGE_ID:$VERSION --target webhook
+          docker buildx build . --platform linux/arm64,linux/amd64 --progress plain --push --tag $IMAGE_ID:$VERSION --target webhook
